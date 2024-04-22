@@ -15,3 +15,5 @@ export const SUPPORTED_LANGUAGES = [
 ];
 
 export const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+
+export const GEMINI_KEY = "AIzaSyCMTOVP6IwVO7-_uwqI-1NhM_Udtul_ka0";

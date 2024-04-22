@@ -2,8 +2,9 @@ import openai from "../utils/openai";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import lang from "../utils/langConstants";
-import { API_CALL } from "../utils/constants";
+import { API_CALL, GEMINI_KEY } from "../utils/constants";
 import { addGptMovieResult } from "../utils/gptSlice";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const GptSearchBar = () => {
   const dispatch = useDispatch();
@@ -23,39 +24,45 @@ const GptSearchBar = () => {
     return json.results;
   };
 
+  // Access your API key (see "Set up your API key" above)
+  const genAI = new GoogleGenerativeAI(GEMINI_KEY);
+
   const handleGptSearchClick = async () => {
     console.log(searchText.current.value);
     // Make an API call to GPT API and get Movie Results
 
-    const gptQuery =
-      "Act as a Movie Recommendation system and suggest some movies for the query : " +
+    // const gptQuery =
+    //   "Act as a Movie Recommendation system and suggest some movies for the query : " +
+    //   searchText.current.value +
+    //   ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
+
+    // const gptResults = await openai.chat.completions.create({
+    //   messages: [{ role: "user", content: gptQuery }],
+    //   model: "gpt-3.5-turbo",
+    // });
+
+    // if (!gptResults.choices) {
+    // }
+
+    // const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
+
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    const prompt =
+      "Act as a movie recommendation system and suggest some movies for the query" +
       searchText.current.value +
-      ". only give me names of 5 movies, comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
-
-    const gptResults = await openai.chat.completions.create({
-      messages: [{ role: "user", content: gptQuery }],
-      model: "gpt-3.5-turbo",
-    });
-
-    if (!gptResults.choices) {
-      // TODO: Write Error Handling
-    }
-
-    console.log(gptResults.choices?.[0]?.message?.content);
-
-    // Andaz Apna Apna, Hera Pheri, Chupke Chupke, Jaane Bhi Do Yaaro, Padosan
-    const gptMovies = gptResults.choices?.[0]?.message?.content.split(",");
-
-    // ["Andaz Apna Apna", "Hera Pheri", "Chupke Chupke", "Jaane Bhi Do Yaaro", "Padosan"]
+      ".only give me names of movies,comma separated like example result given ahead.Example result:Gadar,Sholay,Godzilla,Pathaan,3 Idiots.";
+    const result = await model.generateContent(prompt);
+    const gptResults = await result.response;
+    const gptMovies =
+      gptResults.candidates?.[0]?.content?.parts?.[0]?.text.split(",");
 
     // For each movie I will search TMDB API
-
     const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie));
     // [Promise, Promise, Promise, Promise, Promise]
 
     const tmdbResults = await Promise.all(promiseArray);
 
-    console.log(tmdbResults);
+    // console.log(tmdbResults);
 
     dispatch(
       addGptMovieResult({ movieNames: gptMovies, movieResults: tmdbResults })
