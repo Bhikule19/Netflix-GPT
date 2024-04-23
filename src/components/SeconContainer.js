@@ -7,15 +7,14 @@ const SeconContainer = () => {
   return (
     movies.nowPlayingMovies && (
       <div className="bg-black">
-        <div className="-mt-52 pl-12 relative z-20">
+        <div className="lg:px-12 md:px-8 sm:px-6 px-4 lg:-mt-60 xl:-mt-64 md:-mt-2  sm:mt-4  relative z-20">
           <MovieList title={"Now Playing"} movies={movies.nowPlayingMovies} />
-          <MovieList title={"Trending"} movies={movies.nowPlayingMovies} />
+          <MovieList title={"Top Rated"} movies={movies.topRatedMovies} />
           <MovieList title={"Popular"} movies={movies.popularMovies} />
           <MovieList
             title={"Upcoming Movies"}
-            movies={movies.nowPlayingMovies}
-          />
-          <MovieList title={"Horror"} movies={movies.nowPlayingMovies} />
+            movies={movies.upcomingMovies}
+          />{" "}
         </div>
       </div>
     )
