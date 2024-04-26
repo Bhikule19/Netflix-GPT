@@ -4,7 +4,7 @@
 
 This application is a Netflix-like web application that combines the features of Netflix and Gemini AI. It allows users to browse and search for movies and TV shows, and it also incorporates an AI-powered recommendation system using Google Gemini API. The application is built using React.js for the frontend, Tailwind CSS for styles and uses Firebase for user authentication.
 
-> 🚀 [Deployed Link](https://netflix-l3h1oqwqd-bhikule19s-projects.vercel.app/) - Click here for live preview
+> 🚀 [Deployed Link](https://netflix-ky59qfkwz-bhikule19s-projects.vercel.app/) - Click here for live preview
 
 ![](./src/images/screencapture-localhost-3000-browse-2024-04-26-12_37_15.png)
 
