@@ -82,9 +82,9 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="relative w-12/12">
       <Header />
-      <div className="absolute">
+      <div className="absolute overflow-hidden w-full">
         <img
           src="https://assets.nflxext.com/ffe/siteui/vlv3/c1366fb4-3292-4428-9639-b73f25539794/3417bf9a-0323-4480-84ee-e1cb2ff0966b/IN-en-20240408-popsignuptwoweeks-perspective_alpha_website_medium.jpg"
           alt="background"
@@ -124,17 +124,26 @@ const Login = () => {
             >
               {isSignIn ? "Sign In" : "Sign Up"}
             </button>
-            <p className="text-red-500 font-semibold">{errorMessage}</p>
-            <p>
+            <p className="text-white">
               {isSignIn ? "New to Netflix? " : "Already Registered? "}
               <button
                 type="button"
                 className=" hover:underline font-semibold"
                 onClick={handleToddleSignIn}
               >
-                {isSignIn ? "Sign up now." : "Sign up now"}
+                {isSignIn ? "Sign up now." : "Sign in now"}
               </button>
             </p>
+            {isSignIn ? (
+              <div className="mt-4">
+                <p className="text-red-500">
+                  Create a new account or use the below provided credentials to
+                  try the app
+                </p>
+                <p className="text-white">Email: user@gmail.com</p>
+                <p className="text-white">Password: User@123</p>
+              </div>
+            ) : null}
           </div>
         </form>
       </div>

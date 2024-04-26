@@ -9,7 +9,7 @@ const VideoBg = ({ movieId }) => {
   return (
     <div className=" w-screen overflow-hidden">
       <iframe
-        className="w-screen aspect-[16/9]"
+        className="w-screen aspect-video"
         src={
           "https://www.youtube.com/embed/" +
           trailerVideo?.key +

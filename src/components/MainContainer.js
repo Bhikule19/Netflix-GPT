@@ -22,15 +22,6 @@ const MainContainer = () => {
         <VideoTitle title={original_title} overview={overview} />
       </div>
     </div>
-
-    // <div className="relative ">
-    // <div className="overflow-hidden">
-    //   <VideoBackground movieid={id} />
-    // </div>
-    // <div className="absolute top-0 ">
-    //   <VideoTitle original_title={original_title} overview={overview} />
-    // </div>
-    // </div>
   );
 };
 

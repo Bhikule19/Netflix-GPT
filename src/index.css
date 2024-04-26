@@ -12,4 +12,13 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+
+  .hoverAi {
+    background: linear-gradient(
+      40deg,
+      rgb(197, 68, 251) 0%,
+      rgb(88, 86, 214) 100%
+    );
+    border: transparent;
+  }
 }

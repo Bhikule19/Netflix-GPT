@@ -7,6 +7,7 @@ import { addUser, removeUser } from "../utils/userSlice";
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { SUPPORTED_LANGUAGES } from "../utils/constants";
 import { changeLanguage } from "../utils/configSlice";
+import AIlogo from "../images/AIlogo.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -80,22 +81,19 @@ const Header = () => {
                 ))}
               </select>
             )}
+
             <button
-              className="bg-purple-500 text-sm  font-semibold hover:opacity-80 p-2 rounded-md mr-0.5 "
+              className="bg-black text-base  font-semibold ml-2 py-2 pl-2 pr-4 rounded-3xl  flex items-center justify-center text-white border-white border-2 hover:hoverAi"
               onClick={handleGptSearchClick}
             >
+              <img src={AIlogo} alt="user icon" className="w-6 h-6" />
               {showGptSearch ? "Homepage" : "AI Recomendation"}
             </button>
-            <img
-              src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
-              alt="user icon"
-              className="w-8 h-8"
-            />
             <button
               onClick={handleSignOut}
-              className="ml-4 text-2xl font-semibold text-white"
+              className="ml-4 text-xl font-semibold text-black py-1 px-2 rounded-md bg-white"
             >
-              (Sign Out)
+              Sign Out
             </button>
           </div>
         )}
